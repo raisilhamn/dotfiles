@@ -4,5 +4,6 @@ Software
 - Fzf
 - Zsh
 - Fzf-tab
-- Zgen
+- Zgen // 5 second slower
+- Zplug
 - zsh-prompt-benchmark

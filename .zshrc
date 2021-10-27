@@ -57,18 +57,35 @@ bindkey '^[[1;5C' forward-word
 
 
 # ========== Zgen
-source "${HOME}/.zgen/zgen.zsh"
-zgen load "MichaelAquilina/zsh-you-should-use"
+# source "${HOME}/.zgen/zgen.zsh"
+# zgen load "MichaelAquilina/zsh-you-should-use"
 # zgen load "skywind3000/z.lua"
 # zgen load "kazhala/dotbare"
-zgen load "Aloxaf/fzf-tab"
+# zgen load "Aloxaf/fzf-tab"
 # zgen load "Bhupesh-V/ugit"
-zgen load "bigH/git-fuzzy"
-zgen load "zdharma/fast-syntax-highlighting"
-zgen load "zsh-users/zsh-completions"
-zgen load "zsh-users/zsh-autosuggestions"
-zgen load "zsh-users/zsh-completions"
+# zgen load "bigH/git-fuzzy"
+# zgen load "zdharma/fast-syntax-highlighting"
+# zgen load "zsh-users/zsh-completions"
+# zgen load "zsh-users/zsh-autosuggestions"
+# zgen load "zsh-users/zsh-completions"
+# zgen load "SleepyBag/fuzzy-fs"
+# zgen load "unixorn/autoupdate-zgen"
 
+# ========== Zplug
+source ~/.zplug/init.zsh
+
+zplug "MichaelAquilina/zsh-you-should-use"
+zplug "skywind3000/z.lua"
+# zplug load "kazhala/dotbare"
+zplug "Aloxaf/fzf-tab"
+zplug "Bhupesh-V/ugit"
+zplug "bigH/git-fuzzy"
+zplug "zdharma/fast-syntax-highlighting"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "SleepyBag/fuzzy-fs"
+zplug load
 
 # ========== speed test zsh 
 source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
