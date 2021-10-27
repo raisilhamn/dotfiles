@@ -59,10 +59,10 @@ bindkey '^[[1;5C' forward-word
 # ========== Zgen
 source "${HOME}/.zgen/zgen.zsh"
 zgen load "MichaelAquilina/zsh-you-should-use"
-zgen load "skywind3000/z.lua"
-zgen load "kazhala/dotbare"
+# zgen load "skywind3000/z.lua"
+# zgen load "kazhala/dotbare"
 zgen load "Aloxaf/fzf-tab"
-zgen load "Bhupesh-V/ugit"
+# zgen load "Bhupesh-V/ugit"
 zgen load "bigH/git-fuzzy"
 zgen load "zdharma/fast-syntax-highlighting"
 zgen load "zsh-users/zsh-completions"
