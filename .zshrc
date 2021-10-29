@@ -38,14 +38,12 @@ alias j="z"
 alias rr="ranger"
 alias wtr="curl wttr.in/~Bantul"
 alias storage="ncdu"
-# ctf-tools: PATH setup
-# export PATH=/home/rais/Downloads/github/ctf-tools/bin:$PATH
 alias yt="ytfzf -t"
 alias dut="dutree"
 alias orphan-packages="sudo aura -Oj"
 alias gf="git fuzzy"
 alias save-state="sudo aura -B"
-export PATH="/home/rais/Downloads/code/git-fuzzy/bin:$PATH"
+#export PATH="/home/rais/Downloads/code/git-fuzzy/bin:$PATH"
 alias up="cd ../"
 alias ds="dua i"
 alias nn="nnn"
@@ -123,6 +121,7 @@ zinit light Aloxaf/fzf-tab
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light esc/conda-zsh-completion
 
 zinit ice lucid nocompile wait'0e' nocompletions
 zinit load MenkeTechnologies/zsh-more-completions
@@ -172,4 +171,20 @@ FZF_TAB_GROUP_COLORS=(
     $'\033[38;5;214m' $'\033[38;5;165m' $'\033[38;5;124m' $'\033[38;5;120m'
 )
 zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/rais/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/rais/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/rais/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/rais/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
