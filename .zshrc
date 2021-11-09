@@ -13,7 +13,6 @@ USE_POWERLINE="true"
 if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
-eval "$(navi widget zsh)"
 
 HISTSIZE=1000
 SAVEHIST=1000
@@ -21,66 +20,13 @@ HISTFILE=~/.zhistory
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-autoload -U compinit && compinit -u
+# ========== speed test zsh 
+source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 
-## ==========  alias
-alias ls="exa --icons --group-directories-first"
-alias du="dust"
-alias top="ytop"
-alias band="sudo bandwhich"
-#alias paru="yay"
-alias icat="kitty +kitten icat"
-alias neofetch="neofetch --kitty /home/rais/Pictures/foto.png --size 500"
-alias packagesize="expac -H M '%m\t%n' | sort -h"
-alias c="clear"
-alias cat="bat"
-alias j="z"
-alias rr="ranger"
-alias wtr="curl wttr.in/~Bantul"
-alias storage="ncdu"
-alias yt="ytfzf -t"
-alias dut="dutree"
-alias orphan-packages="sudo aura -Oj"
-alias gf="git fuzzy"
-alias save-state="sudo aura -B"
-#export PATH="/home/rais/Downloads/code/git-fuzzy/bin:$PATH"
-alias up="cd ../"
-alias ds="dua i"
-alias nn="nnn"
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;5C' forward-word
+# ========== fun
+fastfetch --logo arch --packages-format "{} (pacman)" --separator " → " --os-format "Arch Linux ({12})" --structure "Title:Separator:OS:Host:Uptime:Packages:Shell:Resolution:DE:WM:WMTheme:Terminal:CPU:GPU:Battery:Memory:Disk"
+# fastfetch --logo arch --os-format "Arch Linux ({12})" --packages-format "{} (pacman)" --kernel-format "{0}" --locale-format "{0}" --cursor-format "{0}" --icons-format "{0}" --theme-format "{0}"
 
-
-# ========== Zgen
-# source "${HOME}/.zgen/zgen.zsh"
-# zgen load "MichaelAquilina/zsh-you-should-use"
-# zgen load "skywind3000/z.lua"
-# zgen load "kazhala/dotbare"
-# zgen load "Aloxaf/fzf-tab"
-# zgen load "Bhupesh-V/ugit"
-# zgen load "bigH/git-fuzzy"
-# zgen load "zdharma/fast-syntax-highlighting"
-# zgen load "zsh-users/zsh-completions"
-# zgen load "zsh-users/zsh-autosuggestions"
-# zgen load "zsh-users/zsh-completions"
-# zgen load "SleepyBag/fuzzy-fs"
-# zgen load "unixorn/autoupdate-zgen"
-
-# ========== Zplug
-# source ~/.zplug/init.zsh
-
-# zplug "MichaelAquilina/zsh-you-should-use"
-# zplug "skywind3000/z.lua"
-# # zplug load "kazhala/dotbare"
-# zplug "Aloxaf/fzf-tab"
-# zplug "Bhupesh-V/ugit"
-# zplug "bigH/git-fuzzy"
-# zplug "zdharma/fast-syntax-highlighting"
-# zplug "zsh-users/zsh-completions"
-# zplug "zsh-users/zsh-autosuggestions"
-# zplug "zsh-users/zsh-completions"
-# zplug "SleepyBag/fuzzy-fs"
-# zplug load
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -106,46 +52,27 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # ========== Zinit
-# zinit wait lucid light-mode for \
-#   atinit"zicompinit; zicdreplay" \
-#       zdharma/fast-syntax-highlighting \
-#   atload"_zsh_autosuggest_start" \
-#       zsh-users/zsh-autosuggestions \
-#   blockf atpull'zinit creinstall -q .' \
-#       zsh-users/zsh-completions
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
 
+# zinit light zdharma/fast-syntax-highlighting
+# zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-autosuggestions
+
+zinit ice depth=1
 zinit light MichaelAquilina/zsh-you-should-use
+
+zinit ice depth=1
 zinit light skywind3000/z.lua
+
+zinit ice depth=1
 zinit light Aloxaf/fzf-tab
-# zinit light Bhupesh-V/ugit
-zinit light zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light esc/conda-zsh-completion
 
-zinit ice lucid nocompile wait'0e' nocompletions
-zinit load MenkeTechnologies/zsh-more-completions
-
-
-# zinit light bigH/git-fuzzy
-
-# zinit ice lucid nocompile
-# zinit light MenkeTechnologies/zsh-cargo-completion
-
-
-# ========== speed test zsh 
-source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
-
-# ========== fun
-fastfetch --logo arch --packages-format "{} (pacman)" --separator " → " --os-format "Arch Linux ({12})" --structure "Title:Separator:OS:Host:Uptime:Packages:Shell:Resolution:DE:WM:WMTheme:Terminal:CPU:GPU:Battery:Memory:Disk"
-
-# macchina -c green --no-box --no-ascii --no-separator --no-bar-delimiter --short-uptime -H LocalIP
-# colorscript -e panes
-# fastfetch --logo arch --os-format "Arch Linux ({12})" --packages-format "{} (pacman)" --kernel-format "{0}" --locale-format "{0}" --cursor-format "{0}" --icons-format "{0}" --theme-format "{0}"
-# colorscript -e spectrum
-# colorscript -e elfman
-# colorscript -e crunchbang-mini
-# colorscript -r 
 
 # ========= FZF color
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
@@ -153,7 +80,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
 --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
 '
-
 # ========= FZF common setup
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
@@ -187,4 +113,44 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+
+# ==========  alias
+alias ls="exa --icons --group-directories-first"
+alias du="dust"
+alias top="ytop"
+alias band="sudo bandwhich"
+#alias paru="yay"
+alias icat="kitty +kitten icat"
+alias neofetch="neofetch --kitty /home/rais/Pictures/foto.png --size 500"
+alias packagesize="expac -H M '%m\t%n' | sort -h"
+alias c="clear"
+alias cat="bat"
+alias j="z"
+alias rr="ranger"
+alias wtr="curl wttr.in/~Bantul"
+alias storage="ncdu"
+alias yt="ytfzf -t"
+alias dut="dutree"
+alias orphan-packages="sudo aura -Oj"
+alias gf="git fuzzy"
+alias save-state="sudo aura -B"
+alias up="cd ../"
+alias ds="dua i"
+alias nn="nnn"
+alias remove_last="sudo paccache -rk 1"
+alias E="exit"
+alias zh='z -I -t .'
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
+
+
+
+autoload -Uz compinit 
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
 
