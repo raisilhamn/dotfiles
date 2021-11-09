@@ -64,6 +64,10 @@ zinit light skywind3000/z.lua
 zinit ice depth=1
 zinit light Aloxaf/fzf-tab
 
+zinit ice lucid nocompile wait'0e' nocompletions
+zinit load MenkeTechnologies/zsh-more-completions
+
+
 
 # ========= FZF color
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
