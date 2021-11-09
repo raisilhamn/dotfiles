@@ -4,5 +4,5 @@
 - Fzf
 - Zsh
 - Fzf-tab
-- Zinit // 2 second faster than Zplug
+- Zinit
 - zsh-prompt-benchmark
