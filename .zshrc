@@ -3,16 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 unsetopt correct_all
 # Use powerline
-USE_POWERLINE="true"
-
-# # Source manjaro-zsh-configuration
-# if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-#   source /usr/share/zsh/manjaro-zsh-config
-# fi
-# # Use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
-fi
+USE_POWERLINE="false"
 
 HISTSIZE=1000
 SAVEHIST=1000
@@ -145,8 +136,6 @@ bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 
 
-
-
 autoload -Uz compinit 
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
 	compinit;
@@ -154,3 +143,4 @@ else
 	compinit -C;
 fi;
 
+source ~/powerlevel10k/powerlevel10k.zsh-theme
