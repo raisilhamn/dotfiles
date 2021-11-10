@@ -1,4 +1,3 @@
-# ========== stuff 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -12,7 +11,6 @@ HISTFILE=~/.zhistory
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # ========== speed test zsh 
 source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 
@@ -66,10 +64,6 @@ zinit light skywind3000/z.lua
 zinit ice depth=1
 zinit light Aloxaf/fzf-tab
 
-zinit ice lucid nocompile wait'0e' nocompletions
-zinit load MenkeTechnologies/zsh-more-completions
-
-
 
 # ========= FZF color
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
@@ -94,6 +88,27 @@ FZF_TAB_GROUP_COLORS=(
     $'\033[38;5;214m' $'\033[38;5;165m' $'\033[38;5;124m' $'\033[38;5;120m'
 )
 zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
+
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+export LESSOPEN='|~/.lessfilter %s'
+
+
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/rais/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/rais/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/rais/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/rais/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 
 # ==========  alias
@@ -136,17 +151,3 @@ fi;
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/rais/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/rais/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/rais/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/rais/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
