@@ -10,3 +10,5 @@ credits :
 - p10k (<https://github.com/romkatv/powerlevel10k>)
 - zsh-prompt-benchmark (<https://github.com/romkatv/zsh-prompt-benchmark>)
 - lesspipe.sh (<https://github.com/wofr06/lesspipe>)
+- Z.lua (<https://github.com/skywind3000/z.lua>)
+  
