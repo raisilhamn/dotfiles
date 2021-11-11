@@ -1,5 +1,7 @@
 # Dotfiles
 
+credits :
+
 - Kitty (Terminal) (<https://github.com/kovidgoyal/kitty>)
 - Fzf (<https://github.com/junegunn/fzf>)
 - Zsh (<https://github.com/zsh-users/zsh>)
