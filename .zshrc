@@ -64,6 +64,10 @@ zinit light skywind3000/z.lua
 zinit ice depth=1
 zinit light Aloxaf/fzf-tab
 
+zinit ice lucid nocompile wait'0e' nocompletions
+zinit load MenkeTechnologies/zsh-more-completions
+
+
 
 # ========= FZF color
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
@@ -71,7 +75,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
 --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
 '
-# ========= FZF common setup
+# ========= FZF Tab common setup
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -91,7 +95,6 @@ zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
 
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
 export LESSOPEN='|~/.lessfilter %s'
-
 
 
 
