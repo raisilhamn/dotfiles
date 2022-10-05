@@ -117,7 +117,7 @@ unset __conda_setup
 # ==========  alias
 alias ls="exa --icons --group-directories-first"
 alias du="dust"
-alias top="ytop"
+alias top="btop"
 alias band="sudo bandwhich"
 #alias paru="yay"
 alias icat="kitty +kitten icat"
