@@ -1,23 +1,24 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 unsetopt correct_all
-# Use powerline
-USE_POWERLINE="false"
+
 
 HISTSIZE=1000
 SAVEHIST=1000
-HISTFILE=~/.zhistory
+HISTFILE=~/.zsh_history
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # ========== speed test zsh 
-source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
+# source ~/zsh-prompt-benchmark.plugin.zsh
+
+
 
 # ========== fun
-fastfetch --logo arch --packages-format "{} (pacman)" --separator " → " --os-format "Arch Linux ({12})" --structure "Title:Separator:OS:Host:Uptime:Packages:Shell:Resolution:DE:WM:WMTheme:Terminal:CPU:GPU:Battery:Memory:Disk"
+fastfetch --logo arch --packages-format "{} (pacman)" --separator " → " --os-format "Arch Linux ({12})" --structure "Title:Separator:OS:Host:Uptime:Packages:Shell:Resolution:DE:WM:WMTheme:Terminal:CPU:GPU:Battery:Memory"
 # fastfetch --logo arch --os-format "Arch Linux ({12})" --packages-format "{} (pacman)" --kernel-format "{0}" --locale-format "{0}" --cursor-format "{0}" --icons-format "{0}" --theme-format "{0}"
-
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -32,6 +33,9 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+
+
+
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
@@ -41,6 +45,7 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
+
 
 # ========== Zinit
 zinit wait lucid light-mode for \
@@ -55,11 +60,44 @@ zinit wait lucid light-mode for \
 # zinit light zsh-users/zsh-completions
 # zinit light zsh-users/zsh-autosuggestions
 
+zinit wait lucid for \
+	OMZL::clipboard.zsh \
+	OMZL::compfix.zsh \
+	OMZL::completion.zsh \
+	OMZL::correction.zsh \
+    atload"
+        alias ..='cd ..'
+        alias ...='cd ../..'
+        alias ....='cd ../../..'
+        alias .....='cd ../../../..'
+    " \
+	OMZL::directories.zsh \
+	OMZL::git.zsh \
+	OMZL::grep.zsh \
+	OMZL::history.zsh \
+	OMZL::key-bindings.zsh \
+	OMZL::spectrum.zsh \
+	OMZL::termsupport.zsh \
+    atload"
+        alias gcd='gco dev'
+    " \
+	OMZP::git \
+    atload"
+        alias dcupb='docker-compose up --build'
+    " \
+	OMZP::docker-compose \
+	as"completion" \
+    OMZP::docker/_docker \
+    djui/alias-tips \
+    # hlissner/zsh-autopair \
+    # chriskempson/base16-shell \
+
 zinit ice depth=1
 zinit light MichaelAquilina/zsh-you-should-use
 
 zinit ice depth=1
 zinit light skywind3000/z.lua
+
 
 zinit ice depth=1
 zinit light Aloxaf/fzf-tab
@@ -67,6 +105,17 @@ zinit light Aloxaf/fzf-tab
 zinit ice lucid nocompile wait'0e' nocompletions
 zinit load MenkeTechnologies/zsh-more-completions
 
+# thefuck
+zinit ice wait"1" lucid
+zinit light laggardkernel/zsh-thefuck
+
+# better-npm
+zinit ice wait"1" lucid
+zinit light lukechilds/zsh-better-npm-completion
+
+# git-extras
+zinit ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
+zinit light tj/git-extras
 
 
 # ========= FZF color
@@ -75,6 +124,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
 --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
 '
+
 # ========= FZF Tab common setup
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
@@ -98,60 +148,80 @@ export LESSOPEN='|~/.lessfilter %s'
 
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/rais/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/rais/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/rais/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/rais/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/rais/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/rais/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/rais/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/rais/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # ==========  alias
 alias ls="exa --icons --group-directories-first"
 alias du="dust"
-alias top="btop"
+alias top="ytop"
 alias band="sudo bandwhich"
 #alias paru="yay"
 alias icat="kitty +kitten icat"
 alias neofetch="neofetch --kitty /home/rais/Pictures/foto.png --size 500"
 alias packagesize="expac -H M '%m\t%n' | sort -h"
-alias c="clear"
+# alias c="clear"
+alias c="printf '\033[2J\033[3J\033[1;1H'"
 alias cat="bat"
 alias j="z"
+alias jh='z -I -t .'
 alias rr="ranger"
 alias wtr="curl wttr.in/~Bantul"
 # alias storage="ncdu"
-alias yt="ytfzf -t"
+# alias yt="ytfzf -t"
+alias yt="yt-dlp"
 alias dut="dutree"
 alias orphan-packages="sudo aura -Oj"
 alias gf="git fuzzy"
 alias save-state="sudo aura -B"
 alias up="cd ../"
 alias storage="dua i"
-# alias storage="dua i"
 alias nn="nnn"
 alias remove_last="sudo paccache -rk 1"
 alias E="exit"
-alias zh='z -I -t .'
+alias yg='you-get'
+# alias zh='z -I -t .'
+alias update-all='sudo pacman -Sy && sudo powerpill -Su && paru -Su'
+alias dw='dwall -s colony'
+alias update-mirror='sudo pacman-mirrors --fasttrack && sudo pacman -Syyu'
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
+alias update-gallerydl='python3 -m pip install -U gallery-dl'
+alias vite='npm create vite@latest'
+# alias npm-install="yarn add -D prettier@^2.5.1 eslint@^8.7.0"
+
+# autoload -Uz compinit 
+# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+# 	compinit;
+# else
+# 	compinit -C;
+# fi;
 
 
-autoload -Uz compinit 
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
-else
-	compinit -C;
-fi;
+# source /usr/share/nvm/init-nvm.sh
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# export FLYCTL_INSTALL="/home/rais/.fly"
+# export PATH="$FLYCTL_INSTALL/bin:$PATH"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# pnpm
+export PNPM_HOME="/home/rais/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
 
