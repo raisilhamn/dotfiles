@@ -11,5 +11,3 @@ credits :
 - zsh-prompt-benchmark (<https://github.com/romkatv/zsh-prompt-benchmark>)
 - lesspipe.sh (<https://github.com/wofr06/lesspipe>)
 - Z.lua (<https://github.com/skywind3000/z.lua>)
-- chafa (<>)
-  
