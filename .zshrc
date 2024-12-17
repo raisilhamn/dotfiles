@@ -1,22 +1,29 @@
 fastfetch --logo arch --packages-format "{} (pacman)" --separator " → " --os-format "Arch Linux ({12})"  --structure "Title:Separator:OS:Host:Uptime:Packages:Shell:Resolution:DE:Board:Bios:Terminal:CPU:GPU:Battery:Memory:Break:Colors:Break" 
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
-unsetopt correct_all
+# unsetopt correct_all
 
-USE_POWERLINE="false"
+unsetopt correct
+
+# USE_POWERLINE="false"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export OLLAMA_MODELS=/mnt/BE728CFC728CBAA3/model/
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.json)"
 
 
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # ========== speed test zsh 
 # source ~/zsh-prompt-benchmark.plugin.zsh
 
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -131,6 +138,7 @@ zinit snippet OMZL::termsupport.zsh
 
 # ==========  alias
 alias ls="exa --icons --group-directories-first"
+alias psr="php artisan ser"
 alias npmnuke="echo Deleting ^/node_modules/ && rm -rf ./**/node_modules"
 alias zzz="systemctl suspend"
 alias myip='curl ipinfo.io/ip'  # Public IP
@@ -139,6 +147,7 @@ alias yt2mp3='yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata'
 alias du="dust"
 alias top="ytop"
 alias band="sudo bandwhich"
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 #alias paru="yay"
 alias icat="kitty +kitten icat"
 alias neofetch="neofetch --kitty /home/rais/Pictures/foto.png --size 500"
@@ -154,13 +163,13 @@ alias wtr="curl wttr.in/~Bantul"
 # alias yt="ytfzf -t"
 alias yt="yt-dlp"
 alias dut="dutree"
-alias orphan-packages="sudo aura -Oj"
+alias orphan-packages="sudo aura --orphans --abandon"
 alias gf="git fuzzy"
 alias save-state="sudo aura -B"
 alias up="cd ../"
 alias storage="dua i"
 alias nn="nnn"
-alias remove_last="sudo paccache -rk 1"
+alias remove_last="sudo pacman -Scc"
 alias E="exit"
 alias yg='you-get'
 # alias zh='z -I -t .'
@@ -177,7 +186,10 @@ alias codev='vscodium'
 alias sc='scrcpy'
 alias tmail='tmpmail --generate'
 alias qw='onboard'
-alias rall="paccache -rk0"
+alias rall='paccache -rk0'
+alias cock='./conkyd starts'
+alias a='php artisan'
+alias nrd='npm run dev'
 
 # ========== Zinit
 zinit wait lucid light-mode for \
@@ -221,38 +233,59 @@ zinit wait lucid for \
     # hlissner/zsh-autopair \
     # chriskempson/base16-shell \
 
-
-zinit ice depth=1
+# MichaelAquilina/zsh-you-should-use
+zinit ice depth=1 wait"1" lucid
 zinit light MichaelAquilina/zsh-you-should-use
 
-zinit ice depth=1
+# # skywind3000/z.lua
+zinit ice depth=1 wait"1" lucid
 zinit light skywind3000/z.lua
+# zinit ice wait'!0' zinit light skywind3000/z.lua
 
+# romkatv/zsh-defer (uncommented and modified)
+# autoload -Uz ~/zsh-defer/zsh-defer
+zinit ice wait"1" lucid
+zinit load romkatv/zsh-defer
 
-zinit ice depth=1
+# MenkeTechnologies/zsh-more-completions
+zinit ice wait"1" lucid
+zinit load MenkeTechnologies/zsh-more-completions
 
-# 
-# source "$HOME/.zinit/bin/zinit.zsh"
-# zinit ice lucid nocompile wait'0e' nocompletions
-# zinit load MenkeTechnologies/zsh-more-completions
-# thefuck
+# laggardkernel/zsh-thefuck
 zinit ice wait"1" lucid
 zinit light laggardkernel/zsh-thefuck
 
-# better-npm
+# lukechilds/zsh-better-npm-completion
 zinit ice wait"1" lucid
 zinit light lukechilds/zsh-better-npm-completion
 
+# MichaelAquilina/zsh-auto-notify
 zinit ice wait"1" lucid
 zinit light MichaelAquilina/zsh-auto-notify
 
-# git-extras
-zinit ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
+
+zinit ice wait"1" lucid
+zinit light fdellwing/zsh-bat
+
+zinit ice wait"1" lucid
+zinit light romkatv/zsh-defer
+
+
+# tj/git-extras
+zinit ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" wait"1" lucid
 zinit light tj/git-extras
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# romkatv/powerlevel10k
+# zinit ice depth=1 wait"1" lucid
+# zinit light romkatv/powerlevel10k
+
+# jessarcher/zsh-artisan
+zinit ice wait"1" lucid
+zinit light jessarcher/zsh-artisan
 
 
+
+# alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 # zinit load z-shell/H-S-MW
 
 # autoload -U compinit; compinit
@@ -260,10 +293,27 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # eval "$(pyenv init --path)"
 
 # bun completions
-[ -s "/home/rais/.bun/_bun" ] && source "/home/rais/.bun/_bun"
+# [ -s "/home/rais/.bun/_bun" ] && source "/home/rais/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export OLLAMA_MODELS=/mnt/BE728CFC728CBAA3/ollama/ ollama serve
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+# export OLLAMA_MODELS=/mnt/BE728CFC728CBAA3/ollama/ ollama serve
 # source /home/rais/.local/share/zinit/plugins/tj---git-extras/etc/git-extras-completion.zsh
+
+# ~/miniconda3/bin/conda init zsh
+# >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/rais/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/rais/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/rais/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/rais/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
